@@ -1,0 +1,52 @@
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+
+module.exports = {
+  mode: "development",
+  entry: path.resolve(__dirname, "src/app/index.tsx"),
+  output: {
+    filename: "[name].[fullhash].js",
+    path: path.resolve(__dirname, "build"),
+    publicPath: "/",
+  },
+  resolve: {
+    extensions: [".tsx", ".ts"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/i,
+        use: "babel-loader",
+        exclude: /node_modules/,
+      },
+      // {
+      //   test: /\.s[ac]ss$/i,
+      //   use: ["style-loader", "css-loader", "sass-loader"],
+      // },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: "asset/resource",
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "public/index.html"),
+    }),
+    new CleanWebpackPlugin(),
+  ],
+  devServer: {
+    port: 3000,
+    open: true,
+    historyApiFallback: true,
+  },
+};
