@@ -7,7 +7,7 @@ module.exports = {
   entry: path.resolve(__dirname, "src/app/index.tsx"),
   output: {
     filename: "[name].[fullhash].js",
-    path: path.resolve(__dirname, "build"),
+    path: path.resolve(__dirname, "dist"),
     publicPath: "/",
   },
   resolve: {
