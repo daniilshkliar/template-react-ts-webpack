@@ -8,6 +8,7 @@ module.exports = {
   output: {
     filename: "[name].[fullhash].js",
     path: path.resolve(__dirname, "dist"),
+    assetModuleFilename: "assets/[hash][ext]",
     publicPath: "/",
   },
   resolve: {
